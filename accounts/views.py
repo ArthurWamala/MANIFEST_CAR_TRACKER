@@ -4,11 +4,19 @@ from django.contrib.auth.models import User
 
 
 def user_login(request):
+    return render(request, 'accounts/login.html')
+
+def signup(request):from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
+
+def user_login(request):
 
     if request.method == 'POST':
 
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
         user = authenticate(
             request,
@@ -30,6 +38,23 @@ def signup(request):
 
     if request.method == 'POST':
 
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        User.objects.create_user(
+            username=username,
+            password=password
+        )
+
+        return redirect('login')
+
+    return render(
+        request,
+        'accounts/signup.html'
+    )
+
+    if request.method == 'POST':
+
         username = request.POST['username']
         password = request.POST['password']
 
@@ -42,5 +67,5 @@ def signup(request):
 
     return render(
         request,
-        'accounts/signup.html'
+        'accounts/login.html'
     )
