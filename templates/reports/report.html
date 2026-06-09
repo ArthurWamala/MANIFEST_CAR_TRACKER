@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reports</title>
+</head>
+
+<body>
+
+<h1>
+MANIFEST TRANSPORT REPORT
+</h1>
+
+<h2>
+{{ event.name }}
+</h2>
+
+<h3>Total Vehicles</h3>
+
+<p>Buses : {{ total_bus }}</p>
+
+<p>Costers : {{ total_coster }}</p>
+
+<p>Taxis : {{ total_taxi }}</p>
+
+<hr>
+
+<h3>User Breakdown</h3>
+
+<table border="1">
+
+<tr>
+<th>User</th>
+<th>Type</th>
+<th>Total</th>
+</tr>
+
+{% for item in records %}
+
+<tr>
+
+<td>
+{{ item.user.username }}
+</td>
+
+<td>
+{{ item.vehicle_type }}
+</td>
+
+<td>
+{{ item.count }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
